@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake Offer & Scam Scanner</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @keyframes liquidRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes liquidFloat1 {
+      0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+      33% { transform: translate(60px, -40px) scale(1.2) rotate(120deg); }
+      66% { transform: translate(-50px, 50px) scale(0.85) rotate(240deg); }
+      100% { transform: translate(0px, 0px) scale(1) rotate(360deg); }
+    }
+
+    @keyframes liquidFloat2 {
+      0% { transform: translate(0px, 0px) scale(1.1) rotate(0deg); }
+      33% { transform: translate(-70px, 40px) scale(0.9) rotate(-120deg); }
+      66% { transform: translate(50px, -60px) scale(1.25) rotate(-240deg); }
+      100% { transform: translate(0px, 0px) scale(1.1) rotate(-360deg); }
+    }
+
+    @keyframes liquidFloat3 {
+      0% { transform: translate(0px, 0px) scale(0.95); }
+      50% { transform: translate(40px, 50px) scale(1.2); }
+      100% { transform: translate(0px, 0px) scale(0.95); }
+    }
+
+    @keyframes liquidGleam {
+      0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+      25% { opacity: 0.7; }
+      50% { opacity: 0.4; }
+      100% { transform: translateX(250%) rotate(25deg); opacity: 0; }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f8fafc;
+      padding: 30px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background-color: #060b14;
+    }
+
+    .bg-liquid-1 {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.45) 0%, rgba(14, 165, 233, 0.25) 45%, transparent 70%);
+      filter: blur(75px);
+      animation: liquidFloat1 18s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-liquid-2 {
+      position: fixed;
+      bottom: -15%;
+      right: -10%;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 60%, rgba(99, 102, 241, 0.4) 0%, rgba(79, 70, 229, 0.2) 50%, transparent 70%);
+      filter: blur(85px);
+      animation: liquidFloat2 22s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-liquid-3 {
+      position: fixed;
+      top: 35%;
+      right: -15%;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.35) 0%, rgba(6, 182, 212, 0.15) 50%, transparent 70%);
+      filter: blur(70px);
+      animation: liquidFloat3 16s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+        .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
+      padding: 32px 28px;
+      border-radius: 30px;
+      overflow: hidden;
+      
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(10, 18, 36, 0.65);
+      backdrop-filter: blur(32px) saturate(210%);
+      -webkit-backdrop-filter: blur(32px) saturate(210%);
+      
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 30px 70px -12px rgba(0, 0, 0, 0.8),
+        inset 0 2px 3px rgba(255, 255, 255, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.55);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+      pointer-events: none;
+    }
+
+    .header-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: -0.4px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    p.desc {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 4px;
+      margin-bottom: 22px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .presets-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #7dd3fc;
+      margin-bottom: 8px;
+    }
+
+    .presets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .btn-preset {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-preset:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+       .liquid-box-wrapper {
+      position: relative;
+      border-radius: 24px;
+      padding: 2px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .liquid-border-stream {
+      position: absolute;
+      inset: -150%;
+      background: conic-gradient(from 0deg at 50% 50%, #06b6d4 0deg, #3b82f6 90deg, #818cf8 180deg, #0284c7 270deg, #06b6d4 360deg);
+      animation: liquidRotate 6s linear infinite;
+      filter: blur(6px);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .liquid-box-inner {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(8, 15, 30, 0.72);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .liquid-box-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.7), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .liquid-gleam {
+      position: absolute;
+      inset: -100%;
+      width: 200%;
+      height: 300%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 40%, rgba(56, 189, 248, 0.25) 50%, rgba(255, 255, 255, 0.1) 55%, transparent 100%);
+      animation: liquidGleam 6s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    textarea {
+      width: 100%;
+      height: 125px;
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      color: #f8fafc;
+      border: none;
+      padding: 16px;
+      font-size: 13.5px;
+      font-family: monospace;
+      resize: vertical;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+
+    .scan-btn {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0ea5e9 100%);
+      color: #08111e;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: all 0.2s ease;
+      box-shadow: 
+        0 8px 24px -4px rgba(6, 182, 212, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .scan-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 
+        0 12px 28px -4px rgba(6, 182, 212, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(8, 14, 28, 0.85) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .score {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .verdict {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .bar-bg {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 99px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      padding: 1px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    ul.reasons-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul.reasons-list li {
+      font-size: 12.5px;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      border-radius: 10px;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-liquid-1"></div>
+<div class="bg-liquid-2"></div>
+<div class="bg-liquid-3"></div>
+
+<div class="card">
+  <div style="text-align: center;">
+    <span class="header-badge">Fraud Detection Engine</span>
+    <h1>Scam & Fake Offer Scanner</h1>
+    <p class="desc">Paste an offer letter, hiring text, or rental message to analyze risk.</p>
+  </div>
+
+  <div class="presets-label">Quick Test Presets:</div>
+  <div class="presets">
+    <button class="btn-preset" onclick="loadSample('fee')">Registration Fee</button>
+    <button class="btn-preset" onclick="loadSample('job')">Fake Check Job</button>
+    <button class="btn-preset" onclick="loadSample('rental')">Fake Rental</button>
+    <button class="btn-preset" onclick="loadSample('legit')">Real Offer</button>
+  </div>
+
+  <div class="liquid-box-wrapper">
+    <div class="liquid-border-stream"></div>
+    <div class="liquid-box-inner">
+      <div class="liquid-gleam"></div>
+      <textarea id="offerText" placeholder="Paste job offer letter or rental message here..."></textarea>
+    </div>
+  </div>
+
+  <button class="scan-btn" onclick="scanOffer()">Scan Fakeness Percentage</button>
+
+  <div id="resultBox" class="result">
+    <div style="margin-bottom: 4px;">
+      <span id="scoreText" class="score">0% FAKE</span>
+    </div>
+    <div id="verdictText" class="verdict"></div>
+    <div class="bar-bg"><div id="barFill" class="bar-fill"></div></div>
+    <ul id="reasonsList" class="reasons-list"></ul>
+  </div>
+</div>
+
+<script>
+  function scanOffer() {
+    const text = document.getElementById("offerText").value.trim();
+    if (!text) return alert("Please paste some text first!");
+
+    let score = 0;
+    const reasons = [];
+
+    if (
+      /(registra?tion|processing|training|onboarding|interview|verification|security|gate\s*pass)\s*(fee|charges?|deposit|amount|cost|money)?/i.test(text) &&
+      /(submit|pay|send|deposit|transfer|charge|pay\s*now|give|remit)/i.test(text)
+    ) {
+      score += 40;
+      reasons.push("Demands upfront registration or processing fee (Legitimate companies NEVER charge candidates)");
+    }
+
+    if (
+      /(indian\s*rupees?|indianrupees?|rupees?|inr|rs\.?|₹)/i.test(text) &&
+      /(submit|pay|send|transfer|deposit|charge|cost|fee|registra?tion|selected|offer|job|role|hired|\d+)/i.test(text)
+    ) {
+      score += 35;
+      reasons.push("Demands payment in Indian Rupees (Rupees / INR / ₹) to secure recruitment");
+    }
+
+    if (/\bkindly\s*(submit|pay|send|transfer|deposit|forward|provide|remit)\b/i.test(text)) {
+      score += 20;
+      reasons.push("Uses classic phishing phrasing ('kindly submit/pay') to solicit funds");
+    }
+
+    if (/\b(zelle|cashapp|cash\s*app|venmo|wire\s*transfer|bitcoin|crypto|usdt|gift\s*card|upi|paytm|gpay|google\s*pay|phonepe|bhim)\b/i.test(text)) {
+      score += 30;
+      reasons.push("Demands payment through peer-to-peer cash apps, UPI, wire transfer, or crypto");
+    }
+
+    if (
+      /(approved\s*vendor|vendor|buy\s*equipment|purchase\s*laptop|macbook|cashier'?s?\s*check|deposit\s*(the\s*)?check|deposit\s*it|check\s*sent)/i.test(text) &&
+      /(check|deposit|vendor|laptop|macbook|equipment)/i.test(text)
+    ) {
+      score += 30;
+      reasons.push("Mentions buying hardware from a vendor or cashing an advance check");
+    }
+
+    if (/@(gmail|yahoo|outlook|hotmail|live|icloud)\.com/i.test(text)) {
+      score += 20;
+      reasons.push("Recruiter uses free personal email (@gmail/@outlook) instead of company domain");
+    }
+
+    if (/\b(telegram|whatsapp|signal)\b|without\s*interview|no\s*interview/i.test(text)) {
+      score += 20;
+      reasons.push("Hired without formal video interview or conducted solely on Telegram/WhatsApp");
+    }
+
+    if (/(deposit\s*(before|prior\s*to)\s*(viewing|tour)|courier\s*(the\s*)?keys?|fedex\s*(the\s*)?keys?|missionary|relocated\s*abroad|out\s*of\s*country)/i.test(text)) {
+      score += 30;
+      reasons.push("Demands rental holding deposit before in-person tour");
+    }
+
+    score = Math.min(100, score);
+    if (score === 0 && text.length > 40) score = 5;
+
+    const box = document.getElementById("resultBox");
+    const scoreElem = document.getElementById("scoreText");
+    const verdictElem = document.getElementById("verdictText");
+    const fillElem = document.getElementById("barFill");
+    const listElem = document.getElementById("reasonsList");
+
+    scoreElem.innerText = score + "% FAKE";
+    fillElem.style.width = score + "%";
+
+    if (score >= 70) {
+      scoreElem.style.color = "#f43f5e";
+      fillElem.style.background = "#f43f5e";
+      verdictElem.style.color = "#f43f5e";
+      verdictElem.innerText = "CRITICAL RISK: High probability of an active scam trap!";
+    } else if (score >= 40) {
+      scoreElem.style.color = "#fbbf24";
+      fillElem.style.background = "#fbbf24";
+      verdictElem.style.color = "#fbbf24";
+      verdictElem.innerText = "WARNING: Suspicious indicators detected. Proceed with caution.";
+    } else {
+      scoreElem.style.color = "#34d399";
+      fillElem.style.background = "#34d399";
+      verdictElem.style.color = "#34d399";
+      verdictElem.innerText = "LOW RISK: Likely legitimate corporate communication.";
+    }
+
+    listElem.innerHTML = "";
+    if (reasons.length > 0) {
+      reasons.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span style="color:#f43f5e; font-weight:bold;">✕</span> <span>${r}</span>`;
+        listElem.appendChild(li);
+      });
+    } else {
+      const li = document.createElement("li");
+      li.innerHTML = `<span style="color:#34d399; font-weight:bold;">✓</span> <span>No payment traps or fake equipment clauses found.</span>`;
+      listElem.appendChild(li);
+    }
+
+    box.style.display = "block";
+  }
+
+  function loadSample(type) {
+    const el = document.getElementById("offerText");
+    if (type === 'fee') {
+      el.value = "Congrats, you are selected for the HR role. Kindly submit 1000 rupees for registration fee to confirm your appointment letter.";
+    } else if (type === 'job') {
+      el.value = "Selected for Remote Data Clerk at $65/hr. Check sent for $3,500. Deposit it and send $3,000 via CashApp to vendor for your MacBook. Contact hr.recruiter@gmail.com on Telegram.";
+    } else if (type === 'rental') {
+      el.value = "Luxury 2BR Apt for $950/mo. I am currently out of country on church mission. Send $1,000 deposit via Zelle before viewing and FedEx will send keys.";
+    } else {
+      el.value = "CloudScale Tech extends an offer for Senior Engineer at $130,000/yr. Equipment is shipped directly by IT at zero cost. hr@cloudscaletech.com";
+    }
+    scanOffer();
+  }
+</script>
+
+</body>
+</html>
